@@ -7,11 +7,9 @@ import {
   ChevronDown,
   ChevronRight,
   ChevronUp,
-  Plus,
   Zap,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import { useApp } from "@/lib/context";
 
 interface QuickActionItem {
   id: string;
@@ -96,7 +94,6 @@ const totalItems = categories.reduce((sum, c) => sum + c.items.length, 0);
 
 export function QuickActionsSection() {
   const [expanded, setExpanded] = useState(false);
-  const { openBottomSheet } = useApp();
 
   return (
     <section>
@@ -188,18 +185,6 @@ export function QuickActionsSection() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="px-3 pb-3 pt-1">
-              <button
-                type="button"
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-colors hover:opacity-90"
-                style={{ backgroundColor: "#496BE3" }}
-                onClick={() => openBottomSheet({ type: "new-request" })}
-              >
-                <Plus className="w-4 h-4" />
-                Creá tu solicitud
-              </button>
             </div>
           </>
         )}
