@@ -2,7 +2,6 @@
 
 import { addDays, getDay, isWeekend, startOfWeek } from "date-fns";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CategoryIcon } from "@/components/ui/category-icon";
 import { useApp } from "@/lib/context";
 import {
 	categoryColors,
@@ -37,6 +36,7 @@ export function WeekView() {
 	const [currentTime, setCurrentTime] = useState(new Date());
 	const tbodyRef = useRef<HTMLTableSectionElement>(null);
 	const [tbodyOffsetTop, setTbodyOffsetTop] = useState(0);
+	const [timeIndicatorTop, setTimeIndicatorTop] = useState(-1);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -46,10 +46,21 @@ export function WeekView() {
 	}, []);
 
 	useEffect(() => {
-		if (tbodyRef.current) {
-			setTbodyOffsetTop(tbodyRef.current.offsetTop);
+		if (!tbodyRef.current) return;
+		setTbodyOffsetTop(tbodyRef.current.offsetTop);
+
+		const hour = currentTime.getHours();
+		const minute = currentTime.getMinutes();
+		const hourIndex = hour - 7;
+		const rows = tbodyRef.current.rows;
+		if (hourIndex >= 0 && hourIndex < rows.length) {
+			const row = rows[hourIndex];
+			const rowOffsetInTbody = row.offsetTop - tbodyRef.current.offsetTop;
+			setTimeIndicatorTop(rowOffsetInTbody + (minute / 60) * row.offsetHeight);
+		} else {
+			setTimeIndicatorTop(-1);
 		}
-	}, [density]);
+	}, [density, currentTime]);
 
 	const weekStart = startOfWeek(selectedDate, { weekStartsOn: 1 });
 	const allWeekDays = Array.from({ length: 7 }, (_, i) =>
@@ -150,15 +161,8 @@ export function WeekView() {
 	};
 
 	// Current time indicator
-	const currentHour = currentTime.getHours();
-	const currentMinute = currentTime.getMinutes();
 	const isCurrentWeek = weekDays.some((d) => isTodayDate(d));
 	const todayIndex = weekDays.findIndex((d) => isTodayDate(d));
-	const timeIndicatorTop =
-		currentHour >= 7 && currentHour <= 20
-			? (currentHour - 7) * eventMinHeight +
-				(currentMinute / 60) * eventMinHeight
-			: -1;
 
 	if (activeFilters.size === 0) {
 		return (
@@ -341,7 +345,7 @@ export function WeekView() {
 									key={i}
 									className={cn(
 										"py-2 align-middle overflow-hidden",
-										isPast && !isTodayDate(day) && "opacity-40 grayscale",
+										isPast && !isTodayDate(day) && "opacity-40",
 									)}
 									style={{ backgroundColor: getColumnBg(day) }}
 								>
@@ -400,7 +404,7 @@ export function WeekView() {
 										key={dayIndex}
 										className={cn(
 											"border-t border-gray-200 p-0.5 align-top",
-											isPast && !isTodayDate(day) && "opacity-40 grayscale",
+											isPast && !isTodayDate(day) && "opacity-40",
 										)}
 										style={{
 											height: eventMinHeight,
@@ -429,19 +433,9 @@ export function WeekView() {
 															minHeight: eventMinHeight - 8,
 														}}
 													>
-														<div className="flex items-center gap-1">
-															<CategoryIcon
-																category={event.category}
-																size={10}
-																className="text-white shrink-0"
-															/>
-															<span className="font-medium">
-																{event.startTime}
-															</span>
-														</div>
-														<span className="truncate leading-tight">
-															{displayName}
-														</span>
+													<span className="truncate leading-tight font-medium">
+														{displayName}
+													</span>
 													</button>
 												);
 											})}

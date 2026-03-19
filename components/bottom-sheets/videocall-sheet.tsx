@@ -134,7 +134,7 @@ export function VideocallSheet({ event, onClose }: VideocallSheetProps) {
       {/* Join button */}
       <button
         className="w-full py-4 rounded-xl text-white font-semibold flex items-center justify-center gap-2 text-lg"
-        style={{ backgroundColor: '#22C55E' }}
+        style={{ backgroundColor: '#496BE3' }}
       >
         <Video className="w-5 h-5" />
         Unirse ahora

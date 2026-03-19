@@ -51,7 +51,7 @@ export function EventDetailSheet({ event }: EventDetailSheetProps) {
         return (
           <button
             className="w-full py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2"
-            style={{ backgroundColor: '#22C55E' }}
+            style={{ backgroundColor: '#496BE3' }}
           >
             <CheckSquare className="w-5 h-5" />
             Ir a la tarea en onboarding
@@ -61,7 +61,7 @@ export function EventDetailSheet({ event }: EventDetailSheetProps) {
         return (
           <button
             className="w-full py-3 rounded-xl text-white font-medium"
-            style={{ backgroundColor: '#EC4899' }}
+            style={{ backgroundColor: '#496BE3' }}
           >
             Felicitar
           </button>
@@ -70,7 +70,7 @@ export function EventDetailSheet({ event }: EventDetailSheetProps) {
         return (
           <button
             className="w-full py-3 rounded-xl text-white font-medium"
-            style={{ backgroundColor: '#EAB308' }}
+            style={{ backgroundColor: '#496BE3' }}
           >
             Felicitar
           </button>
@@ -86,7 +86,7 @@ export function EventDetailSheet({ event }: EventDetailSheetProps) {
         return (
           <button
             className="w-full py-3 rounded-xl text-white font-medium flex items-center justify-center gap-2"
-            style={{ backgroundColor: '#EF4444' }}
+            style={{ backgroundColor: '#496BE3' }}
           >
             <ExternalLink className="w-5 h-5" />
             Ver capacitación

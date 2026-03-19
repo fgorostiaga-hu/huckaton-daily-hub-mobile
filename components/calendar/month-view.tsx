@@ -67,7 +67,7 @@ export function MonthView() {
   // Get cell background color - more distinct colors
   const getCellBg = (day: Date, isPast: boolean) => {
     const holiday = isHoliday(day);
-    if (holiday) return isPast ? '#FEF9C366' : '#FDE04766'; // Yellow with opacity for holidays
+    if (holiday) return isPast ? '#FACC1533' : '#FACC154D'; // Bright yellow, 30% opacity for holidays
     if (isWeekend(day)) return isPast ? '#E0E7FF' : '#C7D2FE'; // Indigo/blue for weekends
     return isPast ? '#F3F4F6' : '#FFFFFF'; // White for workdays, gray for past
   };
