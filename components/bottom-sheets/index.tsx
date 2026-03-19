@@ -8,6 +8,7 @@ import { ShiftSheet } from './shift-sheet';
 import { WhosOutSheet } from './whos-out-sheet';
 import { NewTaskSheet } from './new-task-sheet';
 import { NewVideocallSheet } from './new-videocall-sheet';
+import { NewRequestSheet } from './new-request-sheet';
 import { DayEventsSheet } from './day-events-sheet';
 import { FilterSheet } from './filter-sheet';
 import { formatDate } from '@/lib/utils';
@@ -31,6 +32,8 @@ export function BottomSheetManager() {
         return 'Nueva tarea';
       case 'new-videocall':
         return 'Nueva videollamada';
+      case 'new-request':
+        return 'Creá tu solicitud';
       case 'day-events':
         return `Eventos del ${formatDate(bottomSheet.date, "d 'de' MMMM")}`;
       case 'filters':
@@ -52,6 +55,8 @@ export function BottomSheetManager() {
         return <NewTaskSheet />;
       case 'new-videocall':
         return <NewVideocallSheet />;
+      case 'new-request':
+        return <NewRequestSheet />;
       case 'day-events':
         return <DayEventsSheet date={bottomSheet.date} />;
       case 'filters':

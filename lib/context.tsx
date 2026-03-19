@@ -63,6 +63,7 @@ export type BottomSheetState =
   | { type: 'whos-out' }
   | { type: 'new-task' }
   | { type: 'new-videocall' }
+  | { type: 'new-request' }
   | { type: 'day-events'; date: Date }
   | { type: 'filters' };
 
