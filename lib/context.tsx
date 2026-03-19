@@ -12,6 +12,7 @@ const defaultSections: HubSectionsConfig = {
   shift: true,
   events: true,
   tasks: true,
+  inbox: true,
   team: true,
 };
 

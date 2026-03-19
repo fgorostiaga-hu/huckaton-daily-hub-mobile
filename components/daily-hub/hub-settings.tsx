@@ -10,6 +10,7 @@ const sectionLabels: { key: HubSectionKey; label: string }[] = [
   { key: 'shift', label: 'Turno' },
   { key: 'events', label: 'Próximos eventos' },
   { key: 'tasks', label: 'Mis tareas' },
+  { key: 'inbox', label: 'Inbox' },
   { key: 'team', label: 'Mi equipo hoy' },
 ];
 

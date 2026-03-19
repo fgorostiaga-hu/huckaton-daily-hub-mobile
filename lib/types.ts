@@ -66,6 +66,6 @@ export interface AbsentPerson extends Person {
 export type ViewMode = 'inicio' | 'calendario';
 export type CalendarViewMode = 'semana' | 'mes';
 
-export type HubSectionKey = 'aiBrief' | 'shift' | 'events' | 'tasks' | 'team';
+export type HubSectionKey = 'aiBrief' | 'shift' | 'events' | 'tasks' | 'inbox' | 'team';
 
 export type HubSectionsConfig = Record<HubSectionKey, boolean>;

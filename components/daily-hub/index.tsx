@@ -8,8 +8,8 @@ import { useApp } from "@/lib/context";
 import { EventsSection } from "./events-section";
 import { HeaderSection } from "./header-section";
 import { HubSettings } from "./hub-settings";
-import { ShiftBanner } from "./shift-banner";
 import { QuickActionsSection } from "./quick-actions-section";
+import { ShiftBanner } from "./shift-banner";
 import { TasksSection } from "./tasks-section";
 import { TeamSection } from "./team-section";
 
@@ -128,13 +128,13 @@ export function DailyHub() {
 				{/* ── 3. Próximos eventos ── */}
 				{hubSections.events && <EventsSection />}
 
-			{/* ── 4. Mis tareas ── */}
-			{hubSections.tasks && <TasksSection />}
+				{/* ── 4. Mis tareas ── */}
+				{hubSections.tasks && <TasksSection />}
 
-			{/* ── 5. Acciones rápidas ── */}
-			<QuickActionsSection />
+				{/* ── 5. Inbox ── */}
+				{hubSections.inbox && <QuickActionsSection />}
 
-			{/* ── 6. Mi equipo hoy ── */}
+				{/* ── 6. Mi equipo hoy ── */}
 				{hubSections.team && <TeamSection />}
 
 				{/* Bottom padding for FAB */}
