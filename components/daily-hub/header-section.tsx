@@ -2,13 +2,15 @@
 
 import { useState, useMemo } from 'react';
 import { useApp } from '@/lib/context';
-import { currentUser } from '@/lib/data';
 import { getGreeting, formatDate, TODAY, isTodayDate, isEventPast, isOverdue } from '@/lib/utils';
 import { Sparkles, Flame, X } from 'lucide-react';
 
 export function HeaderSection() {
   const greeting = getGreeting();
-  const firstName = currentUser.name.split(' ')[0];
+  const firstName = useMemo(() => {
+    const names = ['Santiago', 'Felipe', 'Camila', 'Eugenia'];
+    return names[Math.floor(Math.random() * names.length)];
+  }, []);
   const [showStreakTooltip, setShowStreakTooltip] = useState(false);
   const { tasks, events, hubSections, dismissAiBrief } = useApp();
 
