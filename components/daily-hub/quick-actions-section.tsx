@@ -7,7 +7,7 @@ import {
   ChevronDown,
   ChevronRight,
   ChevronUp,
-  Zap,
+  Inbox,
 } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -46,6 +46,12 @@ const categories: QuickActionCategory[] = [
         title: "Acuerdo de confidencialidad",
         subtitle: "Legal",
         date: "Vence 25 Mar",
+      },
+      {
+        id: "doc-3",
+        title: "Recibo de sueldo — Marzo 2026",
+        subtitle: "RRHH",
+        date: "Vence 31 Mar",
       },
     ],
   },
@@ -89,11 +95,11 @@ export function QuickActionsSection() {
               className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
               style={{ background: "#EEF2FF" }}
             >
-              <Zap className="w-4 h-4" style={{ color: "#496BE3" }} />
+              <Inbox className="w-4 h-4" style={{ color: "#496BE3" }} />
             </div>
             <div className="flex-1 min-w-0 text-left">
               <p className="text-sm font-semibold text-gray-800">
-                Acciones rápidas
+                Inbox
               </p>
               {!expanded && (
                 <p className="text-xs text-gray-400 mt-0.5">
