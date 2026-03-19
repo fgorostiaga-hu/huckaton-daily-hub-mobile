@@ -66,26 +66,6 @@ const categories: QuickActionCategory[] = [
         title: "Vacaciones — Camila Torres",
         subtitle: "17 Mar – 21 Mar",
       },
-      {
-        id: "req-3",
-        title: "Licencia médica — Pedro Ibáñez",
-        subtitle: "18 Mar – 25 Mar",
-      },
-      {
-        id: "req-4",
-        title: "Home office — Ana Morales",
-        subtitle: "20 Mar",
-      },
-      {
-        id: "req-5",
-        title: "Capacitación externa — Diego Suárez",
-        subtitle: "24 Mar",
-      },
-      {
-        id: "req-6",
-        title: "Cambio de turno — Fernando Castro",
-        subtitle: "26 Mar",
-      },
     ],
   },
 ];
