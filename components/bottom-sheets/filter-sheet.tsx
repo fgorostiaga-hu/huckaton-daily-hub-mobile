@@ -3,8 +3,18 @@
 import { useApp } from '@/lib/context';
 import { categoryColors } from '@/lib/data';
 import { CategoryIcon } from '@/components/ui/category-icon';
-import { Check, X } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const WEEK_DAYS = [
+  { index: 0, short: 'L', label: 'Lunes' },
+  { index: 1, short: 'M', label: 'Martes' },
+  { index: 2, short: 'X', label: 'Miércoles' },
+  { index: 3, short: 'J', label: 'Jueves' },
+  { index: 4, short: 'V', label: 'Viernes' },
+  { index: 5, short: 'S', label: 'Sábado' },
+  { index: 6, short: 'D', label: 'Domingo' },
+] as const;
 
 const FILTER_CATEGORIES = [
   'birthday',
@@ -35,7 +45,7 @@ const FILTER_LABELS: Record<string, string> = {
 };
 
 export function FilterSheet() {
-  const { activeFilters, toggleFilter, setAllFilters, closeBottomSheet } = useApp();
+  const { activeFilters, toggleFilter, setAllFilters, closeBottomSheet, visibleDays, toggleVisibleDay, calendarView } = useApp();
 
   const allActive = FILTER_CATEGORIES.every(c => activeFilters.has(c));
   const someActive = FILTER_CATEGORIES.some(c => activeFilters.has(c));
@@ -54,6 +64,47 @@ export function FilterSheet() {
 
   return (
     <div className="space-y-0 -mx-4 -mt-2">
+      {/* Visible days selector — only shown in weekly view */}
+      {calendarView === 'semana' && (
+        <>
+          <div className="px-4 pt-2 pb-2">
+            <span className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase">
+              Días visibles
+            </span>
+          </div>
+          <div className="px-4 pb-3 flex items-center gap-1.5">
+            {WEEK_DAYS.map(({ index, short, label }) => {
+              const isActive = visibleDays.has(index);
+              const isWeekend = index >= 5;
+              return (
+                <button
+                  type="button"
+                  key={index}
+                  onClick={() => toggleVisibleDay(index)}
+                  title={label}
+                  className={cn(
+                    'flex-1 h-9 rounded-lg text-xs font-semibold transition-all',
+                    isActive
+                      ? 'text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                  )}
+                  style={
+                    isActive
+                      ? {
+                          backgroundColor: isWeekend ? '#94A3B8' : '#496BE3',
+                        }
+                      : undefined
+                  }
+                >
+                  {short}
+                </button>
+              );
+            })}
+          </div>
+          <div className="mx-4 border-t border-gray-200 mb-1" />
+        </>
+      )}
+
       {/* Section label */}
       <div className="px-4 pt-2 pb-2">
         <span className="text-[11px] font-semibold text-gray-400 tracking-wider uppercase">

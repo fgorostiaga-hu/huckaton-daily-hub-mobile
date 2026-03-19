@@ -41,6 +41,9 @@ interface AppState {
   activeFilters: Set<string>;
   toggleFilter: (filter: string) => void;
   setAllFilters: (active: boolean) => void;
+
+  visibleDays: Set<number>;
+  toggleVisibleDay: (day: number) => void;
   
   bottomSheet: BottomSheetState | null;
   openBottomSheet: (sheet: BottomSheetState) => void;
@@ -72,6 +75,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [selectedDate, setSelectedDate] = useState<Date>(TODAY);
   const [activeFilters, setActiveFilters] = useState<Set<string>>(
     new Set(['birthday', 'anniversary', 'holiday', 'vacation', 'medical-leave', 'company-event', 'performance', 'survey', 'training', 'onboarding', 'task', 'videocall', 'communication'])
+  );
+  const [visibleDays, setVisibleDays] = useState<Set<number>>(
+    new Set([0, 1, 2, 3, 4, 5, 6])
   );
   const [bottomSheet, setBottomSheet] = useState<BottomSheetState | null>(null);
   const [allEvents, setAllEvents] = useState<CalendarEvent[]>(events);
@@ -142,6 +148,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const toggleVisibleDay = (day: number) => {
+    setVisibleDays(prev => {
+      const next = new Set(prev);
+      if (next.has(day)) {
+        if (next.size <= 1) return prev;
+        next.delete(day);
+      } else {
+        next.add(day);
+      }
+      return next;
+    });
+  };
+
   const openBottomSheet = (sheet: BottomSheetState) => setBottomSheet(sheet);
   const closeBottomSheet = () => setBottomSheet(null);
 
@@ -161,6 +180,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
       activeFilters,
       toggleFilter,
       setAllFilters,
+      visibleDays,
+      toggleVisibleDay,
       bottomSheet,
       openBottomSheet,
       closeBottomSheet,

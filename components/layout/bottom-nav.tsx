@@ -2,9 +2,6 @@
 
 import { Home, MessageSquare, LayoutGrid, Newspaper, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useApp } from '@/lib/context';
-import { useMemo } from 'react';
-import { isOverdue } from '@/lib/utils';
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -58,13 +55,6 @@ function NavItem({ icon, label, active, badge, onClick }: NavItemProps) {
 }
 
 export function BottomNav() {
-  const { tasks } = useApp();
-
-  const urgentCount = useMemo(
-    () => tasks.filter((t) => !t.completed && isOverdue(t.dueDate)).length,
-    [tasks]
-  );
-
   return (
     <nav
       className="flex items-stretch bg-white"
@@ -79,7 +69,6 @@ export function BottomNav() {
         icon={<Home style={{ width: '22px', height: '22px' }} />}
         label="Inicio"
         active
-        badge={urgentCount}
       />
       <NavItem icon={<Newspaper style={{ width: '22px', height: '22px' }} />} label="Muro" />
       <NavItem icon={<LayoutGrid style={{ width: '22px', height: '22px' }} />} label="Apps" />

@@ -37,7 +37,7 @@ export function ShiftBanner() {
           <span className="text-gray-400">·</span>
           <span>{shift.startTime} – {shift.endTime}</span>
           <span className="text-gray-400">·</span>
-          <span>{shift.totalHours}hs</span>
+          <span className="text-gray-400">{shift.totalHours}hs</span>
         </div>
       </div>
     </button>

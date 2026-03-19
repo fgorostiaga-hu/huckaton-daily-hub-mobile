@@ -67,8 +67,8 @@ export function HeaderSection() {
             onMouseEnter={() => setShowStreakTooltip(true)}
             onMouseLeave={() => setShowStreakTooltip(false)}
           >
-            <Flame className="w-3.5 h-3.5" style={{ color: '#496BE3' }} />
-            <span className="text-xs font-semibold leading-none" style={{ color: '#182E7B' }}>12</span>
+            <Flame className="w-4 h-4" style={{ color: '#496BE3' }} />
+            <span className="text-sm font-semibold leading-none" style={{ color: '#182E7B' }}>12</span>
             {showStreakTooltip && (
               <div className="absolute right-0 top-full mt-2 px-3 py-2 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap z-50 shadow-lg">
                 Venís en racha, 12 días ingresando a la app
